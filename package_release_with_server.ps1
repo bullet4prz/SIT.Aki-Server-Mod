@@ -13,7 +13,7 @@ Param(
 )
 
 $ErrorActionPreference = "Stop"
-$SOURCE_REPO = "https://dev.sp-tarkov.com/SPT-AKI/Server.git"
+$SOURCE_REPO = "https://dev.sp-tarkov.com/SPT/Server.git"
 $SERVER_DIR = "./Aki-Server"
 $ZIP_Folder = "./tempZipContents"
 $MOD_DIR = "./dist/SITCoop"
