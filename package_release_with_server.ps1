@@ -38,6 +38,9 @@ if (Test-Path -Path $SERVER_DIR) {
     }
 }
 
+export GIT_CLONE_PROTECTION_ACTIVE=false
+export GIT_LFS_SKIP_SMUDGE=1
+
 Write-Output "clone repo"
 if ($Branch.Length -gt 0) {
     Write-Output "Cloning branch/tag $Branch"
@@ -66,7 +69,6 @@ $akiVer = (Get-Content $packageJsonPath -Raw | ConvertFrom-Json).version
 Write-Output "AKI_VERSION=$akiVer" >> "$env:GITHUB_OUTPUT"
 
 Write-Output "lfs"
-export GIT_LFS_SKIP_SMUDGE=1
 git lfs fetch
 git lfs pull
 
