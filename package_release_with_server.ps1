@@ -38,8 +38,8 @@ if (Test-Path -Path $SERVER_DIR) {
     }
 }
 
-export GIT_CLONE_PROTECTION_ACTIVE=false
-export GIT_LFS_SKIP_SMUDGE=1
+$env:GIT_CLONE_PROTECTION_ACTIVE = "false"
+$env:GIT_LFS_SKIP_SMUDGE = 1
 
 Write-Output "clone repo"
 if ($Branch.Length -gt 0) {
