@@ -52,7 +52,7 @@ Set-Location $SERVER_DIR
 if ($Commit.Length -gt 0) {
     Write-Output "Checking out the commit $Commit"
     git fetch $SOURCE_REPO $Commit
-    git checkout $Commit
+    git checkout -f $Commit
 
     if ($LASTEXITCODE -ne 0) {
         throw "Commit $Commit checkout failed. It doesn't exist? git exit code $LASTEXITCODE"
