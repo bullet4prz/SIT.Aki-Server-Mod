@@ -17,6 +17,7 @@ $SOURCE_REPO = "https://dev.sp-tarkov.com/SPT-AKI/Server.git"
 $SERVER_DIR = "./Aki-Server"
 $ZIP_Folder = "./tempZipContents"
 $MOD_DIR = "./dist/SITCoop"
+$Commit = "4492882bba506f5751a1f600f3ae60275ad27e64"
 
 # build coop mod
 npm clean-install
@@ -40,17 +41,17 @@ if (Test-Path -Path $SERVER_DIR) {
 Write-Output "clone repo"
 if ($Branch.Length -gt 0) {
     Write-Output "Cloning branch/tag $Branch"
-    git clone --depth 1 -b $Branch $SOURCE_REPO $SERVER_DIR
+    git clone -b $Branch $SOURCE_REPO $SERVER_DIR
 } else {
     Write-Output "Cloning default branch"
-    git clone --depth 1 $SOURCE_REPO $SERVER_DIR
+    git clone $SOURCE_REPO $SERVER_DIR
 }
 
 Set-Location $SERVER_DIR
 
 if ($Commit.Length -gt 0) {
     Write-Output "Checking out the commit $Commit"
-    git fetch --depth=1 $SOURCE_REPO $Commit
+    git fetch $SOURCE_REPO $Commit
     git checkout $Commit
 
     if ($LASTEXITCODE -ne 0) {
@@ -65,6 +66,7 @@ $akiVer = (Get-Content $packageJsonPath -Raw | ConvertFrom-Json).version
 Write-Output "AKI_VERSION=$akiVer" >> "$env:GITHUB_OUTPUT"
 
 Write-Output "lfs"
+export GIT_LFS_SKIP_SMUDGE=1
 git lfs fetch
 git lfs pull
 
