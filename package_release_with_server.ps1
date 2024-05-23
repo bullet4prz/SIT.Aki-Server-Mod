@@ -17,7 +17,6 @@ $SOURCE_REPO = "https://dev.sp-tarkov.com/SPT/Server.git"
 $SERVER_DIR = "./Aki-Server"
 $ZIP_Folder = "./tempZipContents"
 $MOD_DIR = "./dist/SITCoop"
-$Commit = "01783e295be916352ccb1078cf8351b273610c8e"
 
 # build coop mod
 npm clean-install
